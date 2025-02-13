@@ -1,4 +1,4 @@
-package pe.edu.vallegrande.SupplierNPH.controller;
+package pe.edu.vallegrande.SupplierNPH.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
