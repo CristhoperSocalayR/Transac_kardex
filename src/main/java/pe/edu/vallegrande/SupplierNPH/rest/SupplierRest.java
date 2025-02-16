@@ -51,14 +51,14 @@ public class SupplierRest {
         return service.deleteById(id);
     }
 
-    @PatchMapping("/{id}/logico")
+    @DeleteMapping("/{id}/logico")
     public Mono<ResponseEntity<Supplier>> logicalDelete(@PathVariable Long id) {
         return service.logicalDelete(id)
                 .map(updatedSupplier -> ResponseEntity.ok(updatedSupplier))
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{id}/restaurar")
+    @PutMapping("/{id}/restaurar")
     public Mono<ResponseEntity<Supplier>> restore(@PathVariable Long id) {
         return service.restore(id)
                 .map(updatedSupplier -> ResponseEntity.ok(updatedSupplier))
