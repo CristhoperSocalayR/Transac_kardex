@@ -32,6 +32,5 @@ public class Document {
     @Column("document_number")
     private String documentNumber;
 
-    @Column("type_kardex_id")
-    private Integer typeKardexId;
+
 }

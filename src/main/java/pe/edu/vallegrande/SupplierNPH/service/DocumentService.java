@@ -38,7 +38,6 @@ public class DocumentService {
                     existingDocument.setConcept(document.getConcept());
                     existingDocument.setDocumentType(document.getDocumentType());
                     existingDocument.setDocumentNumber(document.getDocumentNumber());
-                    existingDocument.setTypeKardexId(document.getTypeKardexId());
                     return documentRepository.save(existingDocument);
                 });
     }
