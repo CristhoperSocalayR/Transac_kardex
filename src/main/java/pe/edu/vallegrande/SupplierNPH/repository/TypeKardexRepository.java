@@ -8,5 +8,5 @@ import reactor.core.publisher.Flux;
 public interface TypeKardexRepository extends ReactiveCrudRepository<TypeKardex, Long> {
 
     Flux<TypeKardex> findByStatus(String status);
-
+    Flux<TypeKardex> findAllByOrderByIdAsc();
 }

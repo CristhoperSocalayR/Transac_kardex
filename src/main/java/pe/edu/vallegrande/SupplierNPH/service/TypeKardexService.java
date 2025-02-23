@@ -15,7 +15,7 @@ public class TypeKardexService {
 
     // Listar todos los registros
     public Flux<TypeKardex> listAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByIdAsc();
     }
 
     // Listar solo los registros activos
@@ -28,7 +28,7 @@ public class TypeKardexService {
         return repository.save(typeKardex);
     }
 
-    // Editar un TypeKardex existente
+    // Editar un TypeKardex existente sin afectar su posición en la base de datos
     public Mono<TypeKardex> update(Long id, TypeKardex typeKardex) {
         return repository.findById(id)
                 .flatMap(existingTypeKardex -> {
@@ -40,7 +40,10 @@ public class TypeKardexService {
                     existingTypeKardex.setShedId(typeKardex.getShedId());
                     existingTypeKardex.setDescription(typeKardex.getDescription());
                     existingTypeKardex.setStatus(typeKardex.getStatus());
-                    return repository.save(existingTypeKardex);
+
+                    // Asegurar que el ID no cambie al hacer save()
+                    return repository.save(existingTypeKardex)
+                            .thenReturn(existingTypeKardex);
                 });
     }
 
