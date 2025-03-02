@@ -6,6 +6,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Table("movement_kardex")
 @Data
@@ -16,9 +17,6 @@ public class MovementKardex {
     @Id
     @Column("kardex_id")
     private Long kardexId;
-
-    @Column("document_id")
-    private Integer documentId;
 
     // Datos de Entradas
     @Column("cantidad_entrada")
@@ -50,11 +48,23 @@ public class MovementKardex {
     @Column("valor_total_saldo")
     private BigDecimal valorTotalSaldo;
 
-    // Observación
+    // Datos del Movimiento
     @Column("observation")
     private String observation;
 
     @Column("type_kardex_id")
     private Integer typeKardexId;
+
+    @Column("issue_date")
+    private LocalDate issueDate;
+
+    @Column("concept")
+    private String concept;
+
+    @Column("document_type")
+    private String documentType;
+
+    @Column("document_number")
+    private String documentNumber;
 
 }

@@ -39,6 +39,6 @@ public class Product {
 
     private String status = "A";
 
-    @Column("supplier_id") // Relación con la tabla supplier
+    @Column("supplier_id")
     private Long supplierId;
 }
