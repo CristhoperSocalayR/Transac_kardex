@@ -12,7 +12,6 @@
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/config/SwaggerConfig.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/repository/TypeSupplierRepository.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/repository/SupplierRepository.java
-/workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/rest/DocumentRest.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/rest/RestTypeKardex.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/service/ShedService.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/model/TypeKardex.java
@@ -23,9 +22,6 @@
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/rest/MovementKardexRest.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/model/MovementKardex.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/model/Shed.java
-/workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/service/DocumentService.java
-/workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/model/Document.java
-/workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/repository/DocumentRepository.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/model/TypeSupplier.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/repository/UbigeoRepository.java
 /workspaces/Transac_kardex/src/main/java/pe/edu/vallegrande/SupplierNPH/rest/RestShed.java

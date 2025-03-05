@@ -17,7 +17,18 @@ public class MovementKardex {
     @Id
     @Column("kardex_id")
     private Long kardexId;
+    
+    @Column("issue_date")
+    private LocalDate issueDate;
 
+    @Column("concept")
+    private String concept;
+
+    @Column("document_type")
+    private String documentType;
+
+    @Column("document_number")
+    private String documentNumber;
     // Datos de Entradas
     @Column("cantidad_entrada")
     private BigDecimal cantidadEntrada;
@@ -54,17 +65,5 @@ public class MovementKardex {
 
     @Column("type_kardex_id")
     private Integer typeKardexId;
-
-    @Column("issue_date")
-    private LocalDate issueDate;
-
-    @Column("concept")
-    private String concept;
-
-    @Column("document_type")
-    private String documentType;
-
-    @Column("document_number")
-    private String documentNumber;
 
 }

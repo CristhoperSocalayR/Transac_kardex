@@ -31,6 +31,10 @@ public class MovementKardexService {
     public Mono<MovementKardex> editar(Long kardexId, MovementKardex movementKardex) {
         return repository.findById(kardexId)
                 .flatMap(existingMovement -> {
+                    existingMovement.setIssueDate(movementKardex.getIssueDate());
+                    existingMovement.setConcept(movementKardex.getConcept());
+                    existingMovement.setDocumentType(movementKardex.getDocumentType());
+                    existingMovement.setDocumentNumber(movementKardex.getDocumentNumber());
                     existingMovement.setCantidadEntrada(movementKardex.getCantidadEntrada());
                     existingMovement.setCostoUnitarioEntrada(movementKardex.getCostoUnitarioEntrada());
                     existingMovement.setValorTotalEntrada(movementKardex.getValorTotalEntrada());

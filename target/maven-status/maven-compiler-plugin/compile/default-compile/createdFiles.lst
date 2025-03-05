@@ -2,14 +2,10 @@ pe/edu/vallegrande/SupplierNPH/repository/UbigeoRepository.class
 pe/edu/vallegrande/SupplierNPH/rest/SupplierRest.class
 pe/edu/vallegrande/SupplierNPH/rest/RestTypeKardex.class
 pe/edu/vallegrande/SupplierNPH/rest/MovementKardexRest.class
-pe/edu/vallegrande/SupplierNPH/model/Document.class
-pe/edu/vallegrande/SupplierNPH/service/DocumentService.class
 pe/edu/vallegrande/SupplierNPH/service/MovementKardexService.class
 pe/edu/vallegrande/SupplierNPH/model/TypeSupplier.class
 pe/edu/vallegrande/SupplierNPH/model/Product.class
-pe/edu/vallegrande/SupplierNPH/model/Document$DocumentBuilder.class
 pe/edu/vallegrande/SupplierNPH/rest/ProductRest.class
-pe/edu/vallegrande/SupplierNPH/repository/DocumentRepository.class
 pe/edu/vallegrande/SupplierNPH/model/Ubigeo.class
 pe/edu/vallegrande/SupplierNPH/service/TypeSupplierService.class
 pe/edu/vallegrande/SupplierNPH/rest/RestTypeSupplier.class
@@ -18,7 +14,6 @@ pe/edu/vallegrande/SupplierNPH/repository/ProductRepository.class
 pe/edu/vallegrande/SupplierNPH/service/UbigeoService.class
 pe/edu/vallegrande/SupplierNPH/repository/TypeSupplierRepository.class
 pe/edu/vallegrande/SupplierNPH/service/SupplierService.class
-pe/edu/vallegrande/SupplierNPH/rest/DocumentRest.class
 pe/edu/vallegrande/SupplierNPH/repository/SupplierRepository.class
 pe/edu/vallegrande/SupplierNPH/model/TypeKardex.class
 pe/edu/vallegrande/SupplierNPH/model/Shed.class
