@@ -7,6 +7,8 @@ import pe.edu.vallegrande.SupplierNPH.repository.SupplierRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class SupplierService {
@@ -15,7 +17,7 @@ public class SupplierService {
 
     // Listar todos
     public Flux<Supplier> findAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByIdAsc();
     }
 
     // Buscar por ID
@@ -23,9 +25,26 @@ public class SupplierService {
         return repository.findById(id);
     }
 
-    // Crear o actualizar
-    public Mono<Supplier> save(Supplier supplier) {
+    // Crear nuevo proveedor
+    public Mono<Supplier> create(Supplier supplier) {
         return repository.save(supplier);
+    }
+
+    // Editar proveedor existente
+    public Mono<Supplier> update(Long id, Supplier supplier) {
+        return repository.findById(id)
+                .flatMap(existingSupplier -> {
+                    existingSupplier.setRuc(supplier.getRuc());
+                    existingSupplier.setCompany(supplier.getCompany());
+                    existingSupplier.setName(supplier.getName());
+                    existingSupplier.setLastname(supplier.getLastname());
+                    existingSupplier.setEmail(supplier.getEmail());
+                    existingSupplier.setCellphone(supplier.getCellphone());
+                    existingSupplier.setNotes(supplier.getNotes());
+                    existingSupplier.setStatus(supplier.getStatus());
+                    existingSupplier.setTypeSupplierId(supplier.getTypeSupplierId());
+                    return repository.save(existingSupplier);
+                });
     }
 
     // Eliminar físicamente

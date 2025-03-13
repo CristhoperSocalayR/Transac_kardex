@@ -24,24 +24,20 @@ public class SupplierRest {
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Supplier>> findById(@PathVariable Long id) {
         return service.findById(id)
-                .map(supplier -> ResponseEntity.ok(supplier))
+                .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Supplier> save(@RequestBody Supplier supplier) {
-        return service.save(supplier);
+    public Mono<Supplier> create(@RequestBody Supplier supplier) {
+        return service.create(supplier);
     }
 
     @PutMapping("/{id}")
     public Mono<ResponseEntity<Supplier>> update(@PathVariable Long id, @RequestBody Supplier supplier) {
-        return service.findById(id)
-                .flatMap(existingSupplier -> {
-                    supplier.setId(id); // Asegurar que el ID sea el mismo
-                    return service.save(supplier);
-                })
-                .map(updatedSupplier -> ResponseEntity.ok(updatedSupplier))
+        return service.update(id, supplier)
+                .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
@@ -54,14 +50,14 @@ public class SupplierRest {
     @DeleteMapping("/{id}/logico")
     public Mono<ResponseEntity<Supplier>> logicalDelete(@PathVariable Long id) {
         return service.logicalDelete(id)
-                .map(updatedSupplier -> ResponseEntity.ok(updatedSupplier))
+                .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}/restaurar")
     public Mono<ResponseEntity<Supplier>> restore(@PathVariable Long id) {
         return service.restore(id)
-                .map(updatedSupplier -> ResponseEntity.ok(updatedSupplier))
+                .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 }

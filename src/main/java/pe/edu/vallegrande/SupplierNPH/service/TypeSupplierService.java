@@ -14,7 +14,7 @@ public class TypeSupplierService {
     private final TypeSupplierRepository repository;
 
     public Flux<TypeSupplier> getAll() {
-        return repository.findAll(); // Changed to fetch all records without filtering by status
+        return repository.findAllByOrderByIdAsc(); // Changed to fetch all records without filtering by status
     }
 
     public Mono<TypeSupplier> getById(Long id) {

@@ -15,7 +15,7 @@ public class UbigeoService {
     private UbigeoRepository ubigeoRepository;
 
     public Flux<Ubigeo> listarTodos() {
-        return ubigeoRepository.findAll();
+        return ubigeoRepository.findAllByOrderByIdAsc();
     }
 
     @Transactional

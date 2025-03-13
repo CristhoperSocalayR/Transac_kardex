@@ -3,7 +3,6 @@ pe/edu/vallegrande/SupplierNPH/rest/SupplierRest.class
 pe/edu/vallegrande/SupplierNPH/rest/RestTypeKardex.class
 pe/edu/vallegrande/SupplierNPH/rest/MovementKardexRest.class
 pe/edu/vallegrande/SupplierNPH/service/MovementKardexService.class
-pe/edu/vallegrande/SupplierNPH/model/TypeSupplier.class
 pe/edu/vallegrande/SupplierNPH/model/Product.class
 pe/edu/vallegrande/SupplierNPH/rest/ProductRest.class
 pe/edu/vallegrande/SupplierNPH/model/Ubigeo.class

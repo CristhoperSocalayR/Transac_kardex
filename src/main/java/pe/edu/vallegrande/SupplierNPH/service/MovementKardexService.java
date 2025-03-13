@@ -19,7 +19,7 @@ public class MovementKardexService {
 
     // Listar todos los movimientos de Kardex
     public Flux<MovementKardex> listarTodos() {
-        return repository.findAll();
+        return repository.findAllByOrderByKardexIdAsc();
     }
 
     // Crear un nuevo movimiento de Kardex
