@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 import pe.edu.vallegrande.SupplierNPH.model.Shed;
 import pe.edu.vallegrande.SupplierNPH.service.ShedService;
-
+@CrossOrigin(origins = "*") 
 @RestController
 @RequestMapping("/NPH/sheds")
 public class RestShed {

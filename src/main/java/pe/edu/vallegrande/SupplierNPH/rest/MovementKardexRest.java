@@ -8,7 +8,7 @@ import pe.edu.vallegrande.SupplierNPH.service.MovementKardexService;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 import org.springframework.http.ResponseEntity;
-
+@CrossOrigin(origins = "*") 
 @RestController
 @RequestMapping("/NPH/movement-kardex")
 public class MovementKardexRest {

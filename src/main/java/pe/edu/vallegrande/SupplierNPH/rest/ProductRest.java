@@ -7,7 +7,7 @@ import pe.edu.vallegrande.SupplierNPH.model.Product;
 import pe.edu.vallegrande.SupplierNPH.service.ProductService;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
-
+@CrossOrigin(origins = "*") 
 @RestController
 @RequestMapping("/NPH/products")
 public class ProductRest {

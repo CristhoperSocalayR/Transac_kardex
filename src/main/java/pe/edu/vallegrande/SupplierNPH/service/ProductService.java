@@ -53,7 +53,6 @@ public class ProductService {
                     existingProduct.setStock(productDetails.getStock());
                     existingProduct.setEntryDate(productDetails.getEntryDate());
                     existingProduct.setExpiryDate(productDetails.getExpiryDate());
-                    existingProduct.setSupplierId(productDetails.getSupplierId());
                     return productRepository.save(existingProduct);
                 });
     }

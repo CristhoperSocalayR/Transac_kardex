@@ -6,7 +6,7 @@ import pe.edu.vallegrande.SupplierNPH.model.TypeKardex;
 import pe.edu.vallegrande.SupplierNPH.service.TypeKardexService;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
-
+@CrossOrigin(origins = "*") 
 @RestController
 @RequestMapping("/NPH/type-kardex")
 public class RestTypeKardex {

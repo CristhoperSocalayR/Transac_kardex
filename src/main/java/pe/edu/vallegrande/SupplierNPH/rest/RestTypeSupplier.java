@@ -7,7 +7,7 @@ import pe.edu.vallegrande.SupplierNPH.model.TypeSupplier;
 import pe.edu.vallegrande.SupplierNPH.service.TypeSupplierService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
+@CrossOrigin(origins = "*") 
 @RestController
 @RequestMapping("/NPH/type-suppliers")
 @RequiredArgsConstructor

@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 import pe.edu.vallegrande.SupplierNPH.model.Ubigeo;
 import pe.edu.vallegrande.SupplierNPH.service.UbigeoService;
-
+@CrossOrigin(origins = "*") // Permite todas las solicitudes CORS
 @RestController
 @RequestMapping("/NPH/ubigeo")
 public class UbigeoRest {
