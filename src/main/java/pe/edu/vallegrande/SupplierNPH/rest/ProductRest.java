@@ -13,36 +13,41 @@ import reactor.core.publisher.Flux;
 public class ProductRest {
 
     @Autowired
-    private ProductService productService;
+    private ProductoService productoService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Product> createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public Mono<ProductoModel> createProduct(@RequestBody ProductoModel product) {
+        return productoService.createProduct(product);
     }
 
     @GetMapping
-    public Flux<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public Flux<ProductoModel> getAllProducts() {
+        return productoService.getAllProducts();
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteProduct(@PathVariable Long id) {
-        return productService.deleteProduct(id);
+        return productoService.deleteProduct(id);
     }
 
     @PutMapping("/logic/{id}")
-    public Mono<Product> softDeleteProduct(@PathVariable Long id) {
-        return productService.softDeleteProduct(id);
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<ProductoModel> softDeleteProduct(@PathVariable Long id) {
+        return productoService.softDeleteProduct(id);
     }
 
     @PutMapping("/restore/{id}")
-    public Mono<Product> restoreProduct(@PathVariable Long id) {
-        return productService.restoreProduct(id);
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<ProductoModel> restoreProduct(@PathVariable Long id) {
+        return productoService.restoreProduct(id);
     }
 
     @PutMapping("/{id}")
-    public Mono<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        return productService.updateProduct(id, productDetails);
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<ProductoModel> updateProduct(@PathVariable Long id, @RequestBody ProductoModel productDetails) {
+        return productoService.updateProduct(id, productDetails);
     }
+
 }

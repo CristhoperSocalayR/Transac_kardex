@@ -23,12 +23,7 @@ public class Product {
     @Column("package_weight")
     private BigDecimal packageWeight;
 
-    @Column("package_quantity")
-    private Integer packageQuantity;
-
-    @Column("price_per_kg")
-    private BigDecimal pricePerKg;
-
+    
     private Integer stock;
 
     @Column("entry_date")
@@ -37,8 +32,6 @@ public class Product {
     @Column("expiry_date")
     private LocalDate expiryDate;
 
-    private String status = "A";
+    private String status = "A"; 
 
-    @Column("supplier_id")
-    private Long supplierId;
 }
