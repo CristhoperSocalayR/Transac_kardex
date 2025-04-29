@@ -16,8 +16,8 @@ pe/edu/vallegrande/SupplierNPH/repository/TypeSupplierRepository.class
 pe/edu/vallegrande/SupplierNPH/service/SupplierService.class
 pe/edu/vallegrande/SupplierNPH/repository/SupplierRepository.class
 pe/edu/vallegrande/SupplierNPH/model/TypeKardex.class
-pe/edu/vallegrande/SupplierNPH/model/Shed.class
 pe/edu/vallegrande/SupplierNPH/model/MovementKardex.class
+pe/edu/vallegrande/SupplierNPH/model/Shed.class
 pe/edu/vallegrande/SupplierNPH/model/Supplier.class
 pe/edu/vallegrande/SupplierNPH/repository/TypeKardexRepository.class
 pe/edu/vallegrande/SupplierNPH/repository/MovementKardexRepository.class

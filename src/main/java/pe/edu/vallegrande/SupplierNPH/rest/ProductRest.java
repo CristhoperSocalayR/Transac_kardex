@@ -7,47 +7,47 @@ import pe.edu.vallegrande.SupplierNPH.model.Product;
 import pe.edu.vallegrande.SupplierNPH.service.ProductService;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
-@CrossOrigin(origins = "*") 
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/NPH/products")
 public class ProductRest {
 
     @Autowired
-    private ProductoService productoService;
+    private ProductService productService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<ProductoModel> createProduct(@RequestBody ProductoModel product) {
-        return productoService.createProduct(product);
+    public Mono<Product> createProduct(@RequestBody Product product) {
+        return productService.createProduct(product);
     }
 
     @GetMapping
-    public Flux<ProductoModel> getAllProducts() {
-        return productoService.getAllProducts();
+    public Flux<Product> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Mono<Void> deleteProduct(@PathVariable Long id) {
-        return productoService.deleteProduct(id);
+        return productService.deleteProduct(id);
     }
 
     @PutMapping("/logic/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<ProductoModel> softDeleteProduct(@PathVariable Long id) {
-        return productoService.softDeleteProduct(id);
+    public Mono<Product> softDeleteProduct(@PathVariable Long id) {
+        return productService.softDeleteProduct(id);
     }
 
     @PutMapping("/restore/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<ProductoModel> restoreProduct(@PathVariable Long id) {
-        return productoService.restoreProduct(id);
+    public Mono<Product> restoreProduct(@PathVariable Long id) {
+        return productService.restoreProduct(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<ProductoModel> updateProduct(@PathVariable Long id, @RequestBody ProductoModel productDetails) {
-        return productoService.updateProduct(id, productDetails);
+    public Mono<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
+        return productService.updateProduct(id, productDetails);
     }
-
 }
