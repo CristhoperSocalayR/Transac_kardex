@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
-
 @Table("product")
 public class Product {
 
@@ -23,7 +22,6 @@ public class Product {
     @Column("package_weight")
     private BigDecimal packageWeight;
 
-    
     private Integer stock;
 
     @Column("entry_date")
@@ -32,6 +30,8 @@ public class Product {
     @Column("expiry_date")
     private LocalDate expiryDate;
 
-    private String status = "A"; 
+    @Column("type_product")
+    private String typeProduct;
 
+    private String status = "A"; 
 }
