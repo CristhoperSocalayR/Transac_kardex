@@ -64,11 +64,11 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build --file Dockerfile \
-                       --tag cris2003/gpt:${{ github.sha }} .
+                       --tag cris2003/TransacKardex:${{ github.sha }} .
 
       # Push the Docker image to Docker Hub
       - name: Push Docker Image to Docker Hub
         run: |
-          docker tag cris2003/gpt:${{ github.sha }} cris2003/gpt:latest
-          docker push cris2003/gpt:${{ github.sha }}
-          docker push cris2003/gpt:latest
+          docker tag cris2003/TransacKardex:${{ github.sha }} cris2003/TransacKardex:latest
+          docker push cris2003/TransacKardex:${{ github.sha }}
+          docker push cris2003/TransacKardex:latest
