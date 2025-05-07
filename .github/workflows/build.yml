@@ -64,11 +64,11 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build --file Dockerfile \
-                       --tag cris2003/TransacKardex:${{ github.sha }} .
+                       --tag cris2003/transackardex:${{ github.sha }} .
 
       # Push the Docker image to Docker Hub
       - name: Push Docker Image to Docker Hub
         run: |
-          docker tag cris2003/TransacKardex:${{ github.sha }} cris2003/TransacKardex:latest
-          docker push cris2003/TransacKardex:${{ github.sha }}
-          docker push cris2003/TransacKardex:latest
+          docker tag cris2003/transackardex:${{ github.sha }} cris2003/transackardex:latest
+          docker push cris2003/transackardex:${{ github.sha }}
+          docker push cris2003/transackardex:latest
