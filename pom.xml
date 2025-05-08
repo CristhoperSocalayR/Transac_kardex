@@ -46,7 +46,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Dependencia para pruebas reactivas -->
+        <!-- Dependencia para pruebas reactivaas -->
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
