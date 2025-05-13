@@ -1,0 +1,30 @@
+docker run -d -p 8080:8080 --name jenkins jenkins/jenkins:lts (Instalacion de jenkins contenedor)
+
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword (Credenciales)
+
+docker exec transac_kardex-jenkins-1 cat /var/jenkins_home/secrets/initialAdminPassword
+
+//JENKINS 
+RED
+docker network create jenkins-network
+
+Ejecutar Jenkins en contenedor
+docker run -d \
+  --name jenkins \
+  --network jenkins-network \
+  -p 8080:8080 -p 50000:50000 \
+  -v jenkins_home:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  jenkins/jenkins:lts
+
+
+CONTRA 
+ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+Ejecutar SonarQube también en contenedor
+docker run -d \
+  --name sonarqube \
+  --network jenkins-network \
+  -p 9000:9000 \
+  sonarqube:lts
