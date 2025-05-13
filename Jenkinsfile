@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clonar repositorio') {
             steps {
-                git 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
+                git branch: 'main', url: 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
             }
         }
 
