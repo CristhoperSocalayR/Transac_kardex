@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'
-        jdk 'jdk-17'
+        maven 'Maven3'  // Asegúrate de que Maven esté instalado y configurado en Jenkins
+        jdk tool: 'jdk-17'  // Asegúrate de que el JDK 17 esté configurado correctamente en Jenkins
     }
 
     environment {
@@ -19,6 +19,11 @@ pipeline {
 
         stage('Compilar') {
             steps {
+                script {
+                    // Verifica que Maven y JDK están disponibles
+                    sh 'java -version'
+                    sh 'mvn -version'
+                }
                 sh 'mvn clean compile'
             }
         }
