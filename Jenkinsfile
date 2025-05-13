@@ -1,43 +1,38 @@
 pipeline {
     agent any
 
-    environment {
-        JAVA_HOME = tool(name: 'jdk17') // Usa el nombre correcto configurado en Jenkins
-        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    tools {
+        jdk 'jdk-17' // Esto debe coincidir con el nombre configurado en Jenkins
     }
 
     stages {
-        stage('Checkout') {
+        stage('Clonar repositorio') {
             steps {
-                git branch: 'main', url: 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
+                git 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
             }
         }
 
         stage('Compilar') {
             steps {
-                sh './mvnw clean compile' // O usa 'mvn' si no estás usando mvnw
+                script {
+                    // Verifica que Maven y JDK están disponibles
+                    sh 'java -version'
+                    sh 'mvn -version'
+                }
+                sh 'mvn clean compile'
             }
         }
 
         stage('Pruebas unitarias') {
             steps {
-                sh './mvnw test'
+                sh 'mvn test'
             }
         }
 
         stage('Generar artefacto') {
             steps {
-                sh './mvnw package'
+                sh 'mvn package'
             }
-        }
-    }
-
-    post {
-        failure {
-            echo 'La compilación ha fallado.'
-        }
-        success {
-            echo 'La compilación fue exitosa.'
         }
     }
 }
