@@ -2,12 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'  // Asegúrate de que Maven esté instalado y configurado en Jenkins
-        jdk tool: 'jdk-17'  // Asegúrate de que el JDK 17 esté configurado correctamente en Jenkins
-    }
-
-    environment {
-        SONARQUBE_ENV = 'MySonar'
+        jdk 'jdk-17' // Esto debe coincidir con el nombre configurado en Jenkins
     }
 
     stages {
@@ -34,24 +29,10 @@ pipeline {
             }
         }
 
-        stage('Analizar con SonarQube') {
-            steps {
-                withSonarQubeEnv("${SONARQUBE_ENV}") {
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=TransacKardex -Dsonar.host.url=http://sonarqube:9000'
-                }
-            }
-        }
-
         stage('Generar artefacto') {
             steps {
                 sh 'mvn package'
             }
-        }
-    }
-
-    post {
-        success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
         }
     }
 }
