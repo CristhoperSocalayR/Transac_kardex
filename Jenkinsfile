@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     tools {
-        jdk 'jdk-17' // Esto debe coincidir con el nombre configurado en Jenkins
+        jdk 'jdk-17'
+        maven 'maven-3.9.4' // <-- nombre que configuraste en Jenkins
     }
 
     stages {
@@ -14,11 +15,8 @@ pipeline {
 
         stage('Compilar') {
             steps {
-                script {
-                    // Verifica que Maven y JDK están disponibles
-                    sh 'java -version'
-                    sh 'mvn -version'
-                }
+                sh 'java -version'
+                sh 'mvn -version'
                 sh 'mvn clean compile'
             }
         }
