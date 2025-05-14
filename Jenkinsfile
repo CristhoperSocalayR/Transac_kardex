@@ -2,11 +2,13 @@ pipeline {
     agent any
 
     environment {
-        DATABASE_URL = credentials('DATABASE_URL')
-        DATABASE_USERNAME = credentials('DATABASE_USERNAME')
-        DATABASE_PASSWORD = credentials('DATABASE_PASSWORD')
         SONARQUBE = 'SonarCloud'
         SONAR_TOKEN = '6ad549b1e284510156162c102325bb0ead18db5b'
+    }
+
+    tools {
+        maven 'Maven 3.8.1'  // Asegúrate de que esté configurado en Jenkins
+        jdk 'JDK 17'         // Asegúrate de que JDK 17 esté configurado en Jenkins
     }
 
     stages {
@@ -34,7 +36,7 @@ pipeline {
 
         stage('Run Unit Tests') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test -Dtest=TestClass1,TestClass2,TestClass3'  // Reemplaza TestClass1, TestClass2, TestClass3 con los nombres de tus clases de prueba
             }
         }
 
