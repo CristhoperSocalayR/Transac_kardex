@@ -1,16 +1,16 @@
 pipeline {
     agent any
-
+    
     environment {
         SONARQUBE = 'SonarCloud'  // Nombre de tu servidor SonarQube configurado en Jenkins
         SONAR_TOKEN = credentials('SONAR_TOKEN')  // Se obtiene el token como credencial
     }
-
+    
     tools {
         maven 'Maven 3.8.1'  // Asegúrate de que Maven esté configurado en Jenkins
         jdk 'JDK 17'         // Asegúrate de que JDK 17 esté configurado en Jenkins
     }
-
+    
     stages {
         stage('Clone Repository') {
             steps {
@@ -18,13 +18,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
             }
         }
-
+        
         stage('Compile with Maven') {
             steps {
                 sh 'mvn clean compile'
             }
         }
-
+        
         stage('Run Unit Tests') {
             steps {
                 sh '''
@@ -36,13 +36,10 @@ pipeline {
                 always {
                     // Usar el paso junit para publicar resultados de pruebas
                     junit testResults: 'target/surefire-reports/*.xml'
-                    
-                    // Opcional: Generar reporte de cobertura
-                    jacoco()
                 }
             }
         }
-
+        
         stage('SonarQube Analysis') {
             steps {
                 script {
@@ -58,7 +55,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Wait for SonarQube Quality Gate') {
             steps {
                 script {
@@ -69,7 +66,7 @@ pipeline {
                 }
             }
         }
-
+        
         stage('Generate .jar Artifact') {
             steps {
                 sh 'mvn package -DskipTests'
@@ -82,7 +79,7 @@ pipeline {
             }
         }
     }
-
+    
     post {
         always {
             // Limpiar workspace después de cada build
