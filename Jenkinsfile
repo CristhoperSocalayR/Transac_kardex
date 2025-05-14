@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SONARQUBE = 'SonarCloud'  // Nombre de tu servidor SonarQube configurado en Jenkins
-        SONAR_TOKEN = '6ad549b1e284510156162c102325bb0ead18db5b'  // Tu token de SonarQube
+        SONAR_TOKEN = credentials('SONAR_TOKEN')  // Se obtiene el token como credencial
     }
 
     tools {
