@@ -34,8 +34,9 @@ pipeline {
             }
             post {
                 always {
-                    // Publicar resultados de pruebas
-                    publishTestResults testResultsPattern: 'target/surefire-reports/*.xml'
+                    // Usar el paso junit para publicar resultados de pruebas
+                    junit testResults: 'target/surefire-reports/*.xml'
+                    
                     // Opcional: Generar reporte de cobertura
                     jacoco()
                 }
