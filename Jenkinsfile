@@ -51,30 +51,11 @@ pipeline {
                                 -Dsonar.projectKey=${PROJECT_KEY} \
                                 -Dsonar.organization=${SONAR_ORGANIZATION} \
                                 -Dsonar.host.url=https://sonarcloud.io \
-                                -Dsonar.login=${SONAR_TOKEN}
+                                -Dsonar.login=${SONAR_TOKEN} \
+                                -Dsonar.projectName=Transac_kardex \
+                                -Dsonar.qualitygate.wait=true \
+                                -Dsonar.scanner.force=true
                         '''
-                    }
-                    
-                    // Guardar el taskId para la Quality Gate
-                    def ceTaskId = sh(returnStdout: true, script: 'cat target/sonar/report-task.txt | grep ceTaskId | cut -d= -f2').trim()
-                    env.SONAR_CE_TASK_ID = ceTaskId
-                }
-            }
-        }
-        
-        stage('Wait for SonarQube Quality Gate') {
-            steps {
-                script {
-                    // Añadir timeout para evitar que el pipeline se quede colgado indefinidamente
-                    timeout(time: 10, unit: 'MINUTES') {
-                        // Esperar un momento para que SonarQube procese
-                        sleep(10)
-                        
-                        // Usar el ID de tarea guardado
-                        def qg = waitForQualityGate(abortPipeline: true, taskId: env.SONAR_CE_TASK_ID)
-                        if (qg.status != 'OK') {
-                            error "Pipeline abortado debido a fallo en la Quality Gate: ${qg.status}"
-                        }
                     }
                 }
             }
