@@ -21,31 +21,7 @@ pipeline {
 
         stage('Compile with Maven') {
             steps {
-                sh 'mvn clean install'
-            }
-        }
-
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv("${env.SONARQUBE}") {
-                        sh '''
-                            mvn sonar:sonar \
-                                -Dsonar.projectKey=CristhoperSocalay/Transac_kardex \
-                                -Dsonar.organization=cristhopersocalayr \
-                                -Dsonar.host.url=https://sonarcloud.io \
-                                -Dsonar.login=${SONAR_TOKEN}
-                        '''
-                    }
-                }
-            }
-        }
-
-        stage('Wait for SonarQube analysis') {
-            steps {
-                script {
-                    waitForQualityGate abortPipeline: true  // Esto espera que el análisis de SonarQube termine
-                }
+                sh 'mvn clean compile'
             }
         }
 
@@ -56,21 +32,70 @@ pipeline {
                         -Dtest=ProductServiceTest,SupplierServiceTest,TypeSupplierServiceTest
                 '''
             }
+            post {
+                always {
+                    // Publicar resultados de pruebas
+                    publishTestResults testResultsPattern: 'target/surefire-reports/*.xml'
+                    // Opcional: Generar reporte de cobertura
+                    jacoco()
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv("${env.SONARQUBE}") {
+                        sh '''
+                            mvn sonar:sonar \
+                                -Dsonar.projectKey=cristhopersocalayr_Transac_kardex \
+                                -Dsonar.organization=cristhopersocalayr \
+                                -Dsonar.host.url=https://sonarcloud.io \
+                                -Dsonar.login=${SONAR_TOKEN}
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Wait for SonarQube Quality Gate') {
+            steps {
+                script {
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
+                }
+            }
         }
 
         stage('Generate .jar Artifact') {
             steps {
-                sh 'mvn package'
+                sh 'mvn package -DskipTests'
+            }
+            post {
+                always {
+                    // Archivar el JAR generado
+                    archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                }
             }
         }
     }
 
     post {
+        always {
+            // Limpiar workspace después de cada build
+            cleanWs()
+        }
         success {
-            echo 'Build completed successfully.'
+            echo 'Build completed successfully!'
+            echo 'SonarQube analysis passed!'
         }
         failure {
-            echo 'Build failed.'
+            echo 'Build failed!'
+        }
+        unstable {
+            echo 'Build is unstable!'
         }
     }
 }
