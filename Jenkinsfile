@@ -29,7 +29,13 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv("${env.SONARQUBE}") {
-                        sh "mvn sonar:sonar -Dsonar.projectKey=TransacKardex -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
+                        sh '''
+                            mvn sonar:sonar \
+                                -Dsonar.projectKey=CristhoperSocalay/Transac_kardex \
+                                -Dsonar.organization=cristhopersocalayr \
+                                -Dsonar.host.url=https://sonarcloud.io \
+                                -Dsonar.login=${SONAR_TOKEN}
+                        '''
                     }
                 }
             }
@@ -45,7 +51,10 @@ pipeline {
 
         stage('Run Unit Tests') {
             steps {
-                sh 'mvn test -Dtest=ProductServiceTest,SupplierServiceTest,TypeSupplierServiceTest'  // Reemplaza TestClass1, TestClass2, TestClass3 con los nombres de tus clases de prueba
+                sh '''
+                    mvn test \
+                        -Dtest=ProductServiceTest,SupplierServiceTest,TypeSupplierServiceTest
+                '''
             }
         }
 
