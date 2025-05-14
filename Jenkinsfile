@@ -2,35 +2,61 @@ pipeline {
     agent any
 
     tools {
-        jdk 'jdk-17'
-        maven 'maven'  // <-- nombre que configuraste en Jenkins
+        maven 'Maven_3.8.6'
+        //jdk 'jdk17'
+
+    }
+
+    environment {
+        DATABASE_URL = credentials('DATABASE_URL')
+        DATABASE_USERNAME = credentials('DATABASE_USERNAME')
+        DATABASE_PASSWORD = credentials('DATABASE_PASSWORD')
+        SONARQUBE = 'SonarCloud'
+        SONAR_TOKEN = '6ad549b1e284510156162c102325bb0ead18db5b'
     }
 
     stages {
-        stage('Clonar repositorio') {
+        stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
+                git 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
             }
         }
 
-        stage('Compilar') {
+        stage('Compile with Maven') {
             steps {
-                sh 'java -version'
-                sh 'mvn -version'
-                sh 'mvn clean compile'
+                sh 'mvn clean install'
             }
         }
 
-        stage('Pruebas unitarias') {
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    withSonarQubeEnv("${env.SONARQUBE}") {
+                        sh "mvn sonar:sonar -Dsonar.projectKey=TransacKardex -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${SONAR_TOKEN}"
+                    }
+                }
+            }
+        }
+
+        stage('Run Unit Tests') {
             steps {
                 sh 'mvn test'
             }
         }
 
-        stage('Generar artefacto') {
+        stage('Generate .jar Artifact') {
             steps {
                 sh 'mvn package'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build completed successfully.'
+        }
+        failure {
+            echo 'Build failed.'
         }
     }
 }
