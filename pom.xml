@@ -19,6 +19,7 @@
     <properties>
         <java.version>17</java.version>
         <spring-boot.version>3.2.1</spring-boot.version>
+        <sonar.organization>6ad549b1e284510156162c102325bb0ead18db5b</sonar.organization> <!-- Agregar la clave de organización aquí -->
     </properties>
 
     <dependencies>
