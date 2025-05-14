@@ -14,7 +14,8 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
+                // Clonar el repositorio y cambiar a la rama 'main'
+                git branch: 'main', url: 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
             }
         }
 
