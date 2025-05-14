@@ -2,38 +2,29 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE = 'SonarCloud'
-        SONAR_TOKEN = '6ad549b1e284510156162c102325bb0ead18db5b'
+        SONARQUBE = 'SonarCloud'  // Nombre de tu servidor SonarQube configurado en Jenkins
+        SONAR_TOKEN = '6ad549b1e284510156162c102325bb0ead18db5b'  // Tu token de SonarQube
     }
 
     tools {
-        maven 'Maven 3.8.1'  // Asegúrate de que esté configurado en Jenkins
+        maven 'Maven 3.8.1'  // Asegúrate de que Maven esté configurado en Jenkins
         jdk 'JDK 17'         // Asegúrate de que JDK 17 esté configurado en Jenkins
     }
 
     stages {
         stage('Clone Repository') {
-            when {
-                branch 'main' // Solo se ejecuta en la rama 'main'
-            }
             steps {
                 git 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
             }
         }
 
         stage('Compile with Maven') {
-            when {
-                branch 'main' // Solo se ejecuta en la rama 'main'
-            }
             steps {
                 sh 'mvn clean install'
             }
         }
 
         stage('SonarQube Analysis') {
-            when {
-                branch 'main' // Solo se ejecuta en la rama 'main'
-            }
             steps {
                 script {
                     withSonarQubeEnv("${env.SONARQUBE}") {
@@ -43,19 +34,21 @@ pipeline {
             }
         }
 
-        stage('Run Unit Tests') {
-            when {
-                branch 'main' // Solo se ejecuta en la rama 'main'
+        stage('Wait for SonarQube analysis') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: true  // Esto espera que el análisis de SonarQube termine
+                }
             }
+        }
+
+        stage('Run Unit Tests') {
             steps {
                 sh 'mvn test -Dtest=TestClass1,TestClass2,TestClass3'  // Reemplaza TestClass1, TestClass2, TestClass3 con los nombres de tus clases de prueba
             }
         }
 
         stage('Generate .jar Artifact') {
-            when {
-                branch 'main' // Solo se ejecuta en la rama 'main'
-            }
             steps {
                 sh 'mvn package'
             }
