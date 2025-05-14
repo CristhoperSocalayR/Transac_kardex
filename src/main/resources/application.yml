@@ -5,6 +5,6 @@ spring:
     name: SupplierNPH
 
   r2dbc:
-        url: ${DATABASE_URL}
-        username: ${DATABASE_USERNAME}
-        password: ${DATABASE_PASSWORD}
+        url: r2dbc:pool:postgresql://aws-0-us-west-1.pooler.supabase.com:5432/postgres
+        username: postgres.tuuxndxyhvjrnvqkgrma
+        password: UpfA3yGIo7CFFLyK
