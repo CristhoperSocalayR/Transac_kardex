@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven_3.8.6'
-        //jdk 'jdk17'
-
-    }
-
     environment {
         DATABASE_URL = credentials('DATABASE_URL')
         DATABASE_USERNAME = credentials('DATABASE_USERNAME')
