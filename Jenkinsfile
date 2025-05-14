@@ -52,6 +52,10 @@ pipeline {
                                 -Dsonar.login=${SONAR_TOKEN}
                         '''
                     }
+                    
+                    // Save the taskId for quality gate
+                    def ceTaskId = sh(returnStdout: true, script: 'cat target/sonar/report-task.txt | grep ceTaskId | cut -d= -f2').trim()
+                    env.SONAR_CE_TASK_ID = ceTaskId
                 }
             }
         }
@@ -59,9 +63,16 @@ pipeline {
         stage('Wait for SonarQube Quality Gate') {
             steps {
                 script {
-                    def qg = waitForQualityGate()
-                    if (qg.status != 'OK') {
-                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    // Add timeout to avoid pipeline hanging indefinitely
+                    timeout(time: 10, unit: 'MINUTES') {
+                        // Wait for the task to complete
+                        sleep(10) // Give SonarQube a moment to process
+                        
+                        // Use the saved task ID
+                        def qg = waitForQualityGate(abortPipeline: true, taskId: env.SONAR_CE_TASK_ID)
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                        }
                     }
                 }
             }
