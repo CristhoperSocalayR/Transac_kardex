@@ -20,7 +20,7 @@
         <java.version>17</java.version>
         <spring-boot.version>3.2.1</spring-boot.version>
         <sonar.organization>cristhopersocalayr</sonar.organization>
-        <sonar.projectKey>cristhopersocalayr_Transac_kardex</sonar.projectKey>
+        <sonar.projectKey>CristhoperSocalayR_Transac_kardex</sonar.projectKey>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
