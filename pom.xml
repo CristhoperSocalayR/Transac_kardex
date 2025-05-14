@@ -143,12 +143,4 @@
             </snapshots>
         </repository>
     </repositories>
-
-    <servers>
-        <server>
-            <id>sonarcloud</id>
-            <username>CristhoperSocalay</username>
-            <password>54b770c306bc8d26d9e864d093dedd4bb76ddee3</password>
-        </server>
-    </servers>
 </project>
