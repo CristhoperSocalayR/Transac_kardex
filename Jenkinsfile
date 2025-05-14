@@ -54,7 +54,10 @@ pipeline {
                                 -Dsonar.login=${SONAR_TOKEN} \
                                 -Dsonar.projectName=Transac_kardex \
                                 -Dsonar.qualitygate.wait=true \
-                                -Dsonar.scanner.force=true
+                                -Dsonar.scanner.force=true \
+                                -Dsonar.scm.disabled=true \
+                                -Dsonar.scm.provider=git \
+                                -Dsonar.analysis.mode=publish
                         '''
                     }
                 }
