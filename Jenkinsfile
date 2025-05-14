@@ -2,9 +2,6 @@ pipeline {
     agent any
 
     environment {
-        DATABASE_URL = credentials('DATABASE_URL')
-        DATABASE_USERNAME = credentials('DATABASE_USERNAME')
-        DATABASE_PASSWORD = credentials('DATABASE_PASSWORD')
         SONARQUBE = 'SonarCloud'
         SONAR_TOKEN = '6ad549b1e284510156162c102325bb0ead18db5b'
     }
