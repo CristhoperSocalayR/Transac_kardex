@@ -13,18 +13,27 @@ pipeline {
 
     stages {
         stage('Clone Repository') {
+            when {
+                branch 'main'  // Solo ejecuta esta etapa en la rama 'main'
+            }
             steps {
                 git 'https://github.com/CristhoperSocalayR/Transac_kardex.git'
             }
         }
 
         stage('Compile with Maven') {
+            when {
+                branch 'main'  // Solo ejecuta esta etapa en la rama 'main'
+            }
             steps {
                 sh 'mvn clean install'
             }
         }
 
         stage('SonarQube Analysis') {
+            when {
+                branch 'main'  // Solo ejecuta esta etapa en la rama 'main'
+            }
             steps {
                 script {
                     withSonarQubeEnv("${env.SONARQUBE}") {
@@ -35,6 +44,9 @@ pipeline {
         }
 
         stage('Wait for SonarQube analysis') {
+            when {
+                branch 'main'  // Solo ejecuta esta etapa en la rama 'main'
+            }
             steps {
                 script {
                     waitForQualityGate abortPipeline: true  // Esto espera que el análisis de SonarQube termine
@@ -43,12 +55,18 @@ pipeline {
         }
 
         stage('Run Unit Tests') {
+            when {
+                branch 'main'  // Solo ejecuta esta etapa en la rama 'main'
+            }
             steps {
-                sh 'mvn test -Dtest=TestClass1,TestClass2,TestClass3'  // Reemplaza TestClass1, TestClass2, TestClass3 con los nombres de tus clases de prueba
+                sh 'mvn test -Dtest=ProductServiceTest,SupplierServiceTest,TypeSupplierServiceTest'  // Reemplaza TestClass1, TestClass2, TestClass3 con los nombres de tus clases de prueba
             }
         }
 
         stage('Generate .jar Artifact') {
+            when {
+                branch 'main'  // Solo ejecuta esta etapa en la rama 'main'
+            }
             steps {
                 sh 'mvn package'
             }
